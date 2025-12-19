@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.AI;
-public class Service {
+public class Service
+{
     private readonly IChatClient _chatClient;
     public Service(IChatClient chatClient)
     {
-        _chatClient=chatClient;
+        _chatClient = chatClient;
     }
     public async Task StreamResponseAsync(HttpRequest request, HttpResponse response)
     {
@@ -15,11 +16,11 @@ public class Service {
             .RootElement.GetProperty("message").GetString() ?? "";
         if (string.IsNullOrEmpty(message))
         {
-            response.StatusCode=400;
+            response.StatusCode = 400;
             await response.WriteAsync("Message is required");
             return;
         }
-        response.ContentType="text/plain; charset=utf-8";
+        response.ContentType = "text/plain; charset=utf-8";
         response.Headers.Add("Cache-Control", "no-cache");
         try
         {
@@ -42,7 +43,7 @@ public class Service {
             Console.WriteLine($"Streaming error: {ex.Message}");
             if (!response.HasStarted)
             {
-                response.StatusCode=500;
+                response.StatusCode = 500;
                 await response.WriteAsync("Internal server error");
             }
         }
