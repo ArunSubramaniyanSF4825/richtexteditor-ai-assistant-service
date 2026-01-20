@@ -30,7 +30,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
                 "https://localhost:7234",
                 "http://localhost:5500",
-                "http://127.0.0.1:5500"    // ← this is the one you need now
+                "http://127.0.0.1:5500"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -46,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     }
 
-app.UseCors("Dev");        // ← IMPORTANT: This line was missing in the right place
+app.UseCors("Dev");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
