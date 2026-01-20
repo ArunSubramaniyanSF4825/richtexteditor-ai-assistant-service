@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.AI;
 using WebApplication2.Service;
 namespace WebApplication2.Controllers;

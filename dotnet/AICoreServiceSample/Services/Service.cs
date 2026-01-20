@@ -1,4 +1,4 @@
-using Microsoft.Extensions.AI;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication2.Service;
