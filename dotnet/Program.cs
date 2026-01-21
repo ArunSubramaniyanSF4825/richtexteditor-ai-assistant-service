@@ -1,6 +1,7 @@
 ﻿using System.ClientModel;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
+using WebApplication2.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string AzureApiKey = Environment.GetEnvironmentVariable("API_KEY") ?? "Your-Api-Key";
+string AzureApiKey = Environment.GetEnvironmentVariable("API_KEY") ?? "Your_Api_Key";
 
-string AzureDeploymentName = Environment.GetEnvironmentVariable("DEPLOYMENT_NAME") ?? "Your-Model-Name";
+string AzureDeploymentName = Environment.GetEnvironmentVariable("DEPLOYMENT_NAME") ?? "Your_Deployment_Name";
 
-string AzureEndpoint = Environment.GetEnvironmentVariable("END_POINT") ?? "https://your-azure-openai.openai.azure.com/";
+string AzureEndpoint = Environment.GetEnvironmentVariable("END_POINT") ?? "https://your_endpoint.openai.azure.com/";
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
     new Uri(AzureEndpoint),
@@ -22,6 +23,7 @@ AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
 IChatClient AIChatClient = azureOpenAIClient.GetChatClient(AzureDeploymentName).AsIChatClient();
 
 builder.Services.AddSingleton<IChatClient>(AIChatClient);
+builder.Services.AddSingleton<AIService>();
 
 builder.Services.AddCors(options =>
 {
