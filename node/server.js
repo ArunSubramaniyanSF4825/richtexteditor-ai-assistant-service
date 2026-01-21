@@ -5,6 +5,29 @@ const PORT = 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.post('/api/query', async (req, res) => {
+    const { message } = req.body;
+    const messages = [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: message },
+    ];
+    const client = new OpenAI({ apiKey: 'YOUR_API_KEY' });
+    try {
+        const completion = await client.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages,
+        });
+        const reply = completion.choices[0]?.message?.content ?? '';
+        res.status(200).send(reply);
+    }
+    catch (error) {
+        console.error('Error during query:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to generate response',
+        });
+    }
+});
 app.post('/api/stream', async (req, res) => {
     const { message } = req.body;
     const promptQuery = [
