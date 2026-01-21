@@ -20,7 +20,7 @@ app.post('/api/stream', async (req: Request, res: Response) => {
 
   try {
     const stream = await client.chat.completions.create({
-      model: 'gpt-4.1-mini',
+      model: 'gpt-4o-mini',
       stream: true,
       stream_options: {
         include_usage: true

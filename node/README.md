@@ -30,19 +30,13 @@ npm install
 Replace `YOUR_API_KEY` in `server.ts` with your OpenAI API key
 *(or preferably load it from an environment variable)*
 
-### 3. Run in Development Mode
-
-```bash
-npm run dev
-```
-
-### 4. Build & Run for Production
+### 3. Build & Run for Production
 
 ```bash
 npm run serve
 ```
 
-### 5. Test the API
+### 4. Test the API
 
 Send a `POST` request to:
 
