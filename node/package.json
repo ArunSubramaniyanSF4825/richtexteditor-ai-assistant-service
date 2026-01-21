@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "serve": "npm run build && node dist/server.js",
-    "dev": "ts-node server.ts"
+    "serve": "npm run build && node dist/server.js"
   },
   "keywords": [],
   "author": "",
